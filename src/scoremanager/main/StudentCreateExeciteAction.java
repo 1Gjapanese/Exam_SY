@@ -3,6 +3,7 @@ package scoremanager.main;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import bean.Student;
 import bean.Teacher;
 import dao.StudentDao;
@@ -24,7 +25,7 @@ public class StudentCreateExeciteAction extends Action{
 		//入学年度の未入力チェック
 		if(ent_year == 0){
 			req.setAttribute("no",no);
-			req. setAttribute("name" ,name);
+			req.setAttribute("name" ,name);
 			req.setAttribute("class_num",class_num);
 
 		//JSPヘフォワード(入学年度未入力)
@@ -32,11 +33,11 @@ public class StudentCreateExeciteAction extends Action{
 		}
 	//Studentへ登録するデータをセット
 		Student stu = new Student();
-		stu. setEntYear(ent_year);
+		stu.setEntYear(ent_year);
 		stu.setNo(no);
-		stu. setName(name);
+		stu.setName(name);
 		stu.setClassNum(class_num);
-		stu.setAttend(isAttend:true);
+		stu.setAttend(true);
 		stu.setSchool(((Teacher)session.getAttribute("user")).getSchool());
 		StudentDao sDao = new StudentDao();
 		boolean flag = sDao.save(stu);
